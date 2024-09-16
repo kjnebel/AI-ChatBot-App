@@ -11,6 +11,7 @@ let canSubmit: boolean = true;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = 'ai-chatbot-app';
 
   constructor(private elementRef: ElementRef) {}
 
@@ -32,11 +33,19 @@ export class AppComponent {
 
 }
 
+// Function to get the prompt from the user and send it to the ai.service.ts to get the response from the chatbot
 async function submitPrompt() {
+
   let input: ChatCompletionMessageParam = { role: 'user', content: prompt };
   prompt = '';
+
+  // generates the chatbot's response.
   await getResponse(input);
+
+  
+  // Scroll to keep the messages in view.
   setTimeout(() => {
+
     let chat = document.getElementsByClassName('assistantChat')[numOfResponse - 1];
     if(chat) {
       document.getElementsByTagName('ol')[0].scrollTo({
@@ -45,20 +54,33 @@ async function submitPrompt() {
         behavior: 'smooth'
       });
     }
+    
   }, 1000);
+
   setLoading(false);
 }
 
-function enterKey(e: KeyboardEvent) {
+// function that modifies the effects the enter key has on the text area.
+async function enterKey(e: KeyboardEvent) {
+
+  // if Shift + Enter create a new line.
   if (e.key === 'Enter' && e.shiftKey) {
+
     e.preventDefault();
     prompt += '\n';
-  } else if (e.key === 'Enter') {
+    
+  } else if (e.key === 'Enter') {         // Else if just enter is pressed then submit the prompt.
+
     e.preventDefault();
+
+    // Makes sure the user isn't rapid-submitting prompts.
     if (canSubmit) {
+
       canSubmit = false;
-      submitPrompt();
+      await submitPrompt();
       canSubmit = true;
+
     }
+
   }
 }

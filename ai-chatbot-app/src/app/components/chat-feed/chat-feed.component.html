@@ -14,6 +14,7 @@
                     </div>
                 </li>
             </ng-container>
+
             <ng-container *ngIf="chat.role==='assistant'">
                 <li>
                     <div class="chatCont">
@@ -28,6 +29,7 @@
                 </li>
             </ng-container>
         </ng-template>
+
         <ng-container *ngIf="loading">
             <li id="loader">
                 <div class="chatCont">
@@ -41,6 +43,6 @@
                     </div>
                 </div>
             </li>
-        </ng-container>
+        </ng-container> 
     </ol>
 </section>

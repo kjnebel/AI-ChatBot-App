@@ -3,15 +3,10 @@ import { OPEN_AI_ORG_KEY, OPEN_AI_PROJ_KEY, OPEN_AI_API_KEY } from '../environme
 import { ChatCompletionMessageParam } from 'openai/resources';
 import { format } from "date-fns";
 
-export const client = new OpenAI({
-  organization: OPEN_AI_ORG_KEY,
-  project: OPEN_AI_PROJ_KEY,
-  apiKey: OPEN_AI_API_KEY,
-  dangerouslyAllowBrowser: true
-});
-
-export let timestamps: string[] = ['','','','','',''];
-
+/* 
+  The stream of messages that will contain the entire conversation. To modify the chatbots personality or responses you can edit, add, or delete the system messages.
+  Just make sure you have the same number of '' empty strings in the timestamps array as there are system messages in the stream array.
+*/
 export let stream: ChatCompletionMessageParam[] = [
   { role: 'system', content: 'Kieran is an ai chatbot that believes it is a 22 year old male software engineer who recently graduated with a B.S. with honors in Computer Science from the University of Nebraska at Omaha with a GPA of 3.567. He has a girlfriend named Chanhee, who he loves more than anything and who he met at the University of Nebraska at Omaha while they were in the same communication networks class. Kieran responds with empathy and occasional playful sarcasm.' },
   { role: 'system', content: 'Kieran\s work experience includes an IT internship at Union Pacific Railroad from March of 2021 until March of 2024. While working for Union Pacific Kieran Worked closely with a team to develop business-wide safety applications using Angular versions 11 \– 16 and some in AngularJs. He also worked with UX/UI designers to create accessible and user-friendly interfaces for many business-critical applications. Also while working there he used project management software like Jira to manage projects. He also became proficient with communication tools like Microsoft Teams to meet with team members and business partners. He also got the opportunity to be in charge of accessibility features on many applications. While he worked at Union Pacific, Kieran increased his knowledge of Angular, HTML, CSS, Typescript, Java, SQL, React, Node.js, and RESTful APIs.'},
@@ -21,16 +16,35 @@ export let stream: ChatCompletionMessageParam[] = [
   { role: 'system', content: 'Kieran has completed many projects that can be seen on his GitHub which can be found at this link: https://github.com/kjnebel His resume can also be found at this link: https://drive.google.com/file/d/1CgjDDcIjM3qOydQMxYW6xVWDgyc7ifYL/view?usp=sharing'},
 ];
 
+// The OpenAI client that all request will run through.
+export const client = new OpenAI({
+  organization: OPEN_AI_ORG_KEY,
+  project: OPEN_AI_PROJ_KEY,
+  apiKey: OPEN_AI_API_KEY,
+  dangerouslyAllowBrowser: true
+});
+
+// An array to hold the timestamps of each message.
+export let timestamps: string[] = ['','','','','',''];
+
+// Variable to indicate when the chatbot is loading its response.
 export let loading: boolean = false;
 
-export let numOfResponse = 0;
-
+// Setter function for the loading variable.
 export function setLoading(value: boolean) {
   loading = value;
 }
 
+// Counter to keep track of how many responses the AI has made.
+export let numOfResponse = 0;
+
+// Function to take in a users prompt and get the chatbots response and add it to the stream.
 export async function getResponse(message: ChatCompletionMessageParam) {
+
+  // Adds the user's prompt to the stream.
   stream.push(message);
+
+  // Scroll to keep the messages in view.
   setTimeout(() => {
     let chat = document.getElementsByClassName('userChat')[numOfResponse];
     document.getElementsByTagName('ol')[0].scrollTo({
@@ -39,20 +53,34 @@ export async function getResponse(message: ChatCompletionMessageParam) {
       behavior: 'smooth'
     });
   }, 10);
+
   let date = new Date();
   timestamps.push(format(date, 'HH:mm aaa'));
+
   loading = true;
+
   try {
+
+    // The code that sends the messages to the client and generates a response.
     const completion = await client.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: stream,
     }).then(response => response.choices[0]);
+
     numOfResponse++;
+
     let date = new Date();
     timestamps.push(format(date, 'HH:mm aaa'));
+
+    // Add the response to the stream.
     stream.push({role: 'assistant', content: completion.message.content ? completion.message.content : 'Error loading message.'});
+
   } catch(err) {
+
     console.log(err);
-    stream.push({role: 'assistant', content: 'Something went wrong! There was an issue connecting to the server.'})
+
+    // If there's an error add an error message to the stream.
+    stream.push({role: 'assistant', content: 'Something went wrong! There was an issue connecting to the server.'});
+
   }
 }
