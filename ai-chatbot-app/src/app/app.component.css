@@ -1,19 +1,93 @@
+/* Styling for the app container */
+
 .app {
     height: 100%;
-    width: 100%;
-}
-
-.center {
-    display: block;
+    width: 80%;
     margin: auto;
 }
 
-app-chat-feed {
-    height: 80%;
-    width: 80%;
+/* Styling for the heading and subheading */
+
+.title {
+    height: calc(10% - 24px);
+    padding: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+    transition: all 0.2s;
+}
+
+a:visited, a:active {
+    color: var(--hover-bg);
+    transition: all 0.2s;
+}
+
+/* Styling for the chat box */
+
+.lightBg {
+    background: var(--lighter-bg);
+    border-radius: 32px;
 }
 
 .chatBox {
-    width: 80%;
-    height: 20%;
+    height: calc(20% - 24px);
+    margin: 12px;
+    margin-top: 24px;
+    display: flex;
+    align-content: center;
+    box-shadow: 0px 0px 15px 1px var(--shadow);
+}
+
+textarea {
+    width: calc(80% - 18px);
+    padding: 16px 12px 16px 24px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: var(--text);
+    border-radius: 32px;
+    font-size: 1.1rem;
+    resize: none;
+}
+
+/* Styling for the button */
+
+.buttonCont {
+    width: calc(20% + 18px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    font-size: 1.5rem;
+    padding: 20px 30px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    cursor: pointer;
+    color: var(--text);
+    background-color: var(--primary);
+    transition: all 0.5s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+    background-color: var(--hover-bg);
+    box-shadow: 0px 0px 30px 0px var(--primary);
 }

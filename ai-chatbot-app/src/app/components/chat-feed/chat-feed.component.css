@@ -1,5 +1,157 @@
 section {
-    height: 80%;
-    width: 50%;
-    
+    height: calc(70% - 24px);
+    width: calc(100% - 24px);
+    background: var(--lighter-bg);
+    border-radius: 32px;
+    padding-left: 12px;
+    padding-right: 4px;
+    margin: 12px;
+    box-shadow: 0px 0px 15px 1px var(--shadow);
+}
+
+/* List stylings */
+
+ol {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    list-style-type: none;
+    padding: 12px;
+}
+
+li {
+    min-height: 100px;
+    padding: 12px;
+}
+
+/* General chat stylings */
+
+h4 {
+    padding-bottom: 4px;
+    width: fit-content;
+}
+
+p {
+    padding-top: 4px;
+    opacity: 50%;
+    font-size: 0.9rem;
+}
+
+pre {
+    text-align: left;
+    white-space: pre-line;
+}
+
+.chat {
+    padding: 1em;
+    border-radius: 24px;
+    box-shadow: 0px 0px 5px 0px var(--shadow);
+}
+
+.chatCont {
+    display: block;
+    max-width: 50%;
+    width: fit-content;
+    height: fit-content;
+    word-wrap: break-word;
+    animation-name: appear;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+
+/* User chat stylings */
+
+.user {
+    margin-right: 0;
+    margin-left: auto;
+
+    > p {
+        text-align: right;
+    }
+}
+
+
+.userChat {
+    background-color: var(--primary);
+}
+
+/* Assistant chat stylings */
+
+.assistantChat {
+    background-color: var(--lightest-bg);
+}
+
+/* Custom scrollbar stylings */
+
+/* entire scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+    height: calc(100% - 12px);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--background);
+    border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Modifying the height of the scrollbar */
+
+::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+    margin-bottom: 24px; 
+}
+
+::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+    margin-top: 24px;
+}
+
+/* Loader stylings */
+
+.loader {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	min-width: 75px;
+    height: fit-content;
+	margin: 0 auto;
+}
+
+.dot {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	animation: leap 1s infinite;
+	box-shadow: 0px 0px 5px 0.1px rgba(20,20,20,0.6);
+    background-color: var(--text);
+}
+.dot:nth-child(2) {
+	animation-delay: .15s;
+}
+.dot:nth-child(3) {
+	animation-delay: .3s;
+}
+
+/* Chat Animations */
+
+@keyframes appear {
+    from {transform: translateY(30px); opacity: 0%;}
+    to {transform: translateY(0px); opacity: 100%;}
+}
+
+@keyframes leap {
+	50% {transform: translateY(-7px)}
+	100% {transform: translateY(0px)}
 }

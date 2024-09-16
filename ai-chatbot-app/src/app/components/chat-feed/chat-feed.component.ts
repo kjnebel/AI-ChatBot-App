@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ChatCompletionMessageParam } from 'openai/resources';
-import { getResponse, stream } from 'src/app/services/ai.service';
+import { getResponse, stream, timestamps, loading } from 'src/app/services/ai.service';
 
 @Component({
   selector: 'app-chat-feed',
@@ -10,5 +10,13 @@ import { getResponse, stream } from 'src/app/services/ai.service';
 export class ChatFeedComponent {
   get chats() {
     return stream;
+  }
+
+  get timestamps() {
+    return timestamps;
+  }
+
+  get loading() {
+    return loading;
   }
 }

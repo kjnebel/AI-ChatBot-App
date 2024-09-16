@@ -1,8 +1,46 @@
 <section>
     <ol>
         <ng-template *ngFor="let chat of chats; let i = index" [ngIf]="chat.role === 'user' || chat.role === 'assistant'">
-            <ng-template class="userChat" [ngIf]="chat.role==='user'">User: {{chat.content}}</ng-template>
-            <ng-template class="assistantChat" [ngIf]="chat.role==='assistant'">Kieran: {{chat.content}}</ng-template>
+            <ng-container *ngIf="chat.role==='user'">
+                <li>
+                    <div class="chatCont user">
+                        <h4 class="user">You</h4>
+                        <div class="userChat chat">
+                            <pre>
+                                {{chat.content}}
+                            </pre>
+                        </div>
+                        <p class="timestamp">{{timestamps[i]}}</p>
+                    </div>
+                </li>
+            </ng-container>
+            <ng-container *ngIf="chat.role==='assistant'">
+                <li>
+                    <div class="chatCont">
+                        <h4>Kieran</h4>
+                        <div class="assistantChat chat">
+                            <pre>
+                                {{chat.content}}
+                            </pre>
+                        </div>
+                        <p class="timestamp">{{timestamps[i]}}</p>
+                    </div>
+                </li>
+            </ng-container>
         </ng-template>
+        <ng-container *ngIf="loading">
+            <li id="loader">
+                <div class="chatCont">
+                    <h4>Kieran</h4>
+                    <div class="assistantChat chat">
+                        <div class="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ng-container>
     </ol>
 </section>
