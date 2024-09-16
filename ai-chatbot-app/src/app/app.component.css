@@ -9,7 +9,7 @@
 /* Styling for the heading and subheading */
 
 .title {
-    height: calc(10% - 24px);
+    height: 10%;
     padding: 12px;
     width: 100%;
     text-align: center;

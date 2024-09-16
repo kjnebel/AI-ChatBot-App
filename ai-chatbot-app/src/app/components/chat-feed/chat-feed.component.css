@@ -45,6 +45,7 @@ pre {
 .chat {
     padding: 1em;
     border-radius: 24px;
+    font-size: 1.1rem;
     box-shadow: 0px 0px 5px 0px var(--shadow);
 }
 

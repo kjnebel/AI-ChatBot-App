@@ -38,12 +38,13 @@ async function submitPrompt() {
   await getResponse(input);
   setTimeout(() => {
     let chat = document.getElementsByClassName('assistantChat')[numOfResponse - 1];
-    console.log(document.getElementsByTagName('ol')[0].scrollHeight + chat.clientHeight)
-    document.getElementsByTagName('ol')[0].scrollTo({
-      top: document.getElementsByTagName('ol')[0].scrollHeight + chat.clientHeight,
-      left: 0,
-      behavior: 'smooth'
-    });
+    if(chat) {
+      document.getElementsByTagName('ol')[0].scrollTo({
+        top: document.getElementsByTagName('ol')[0].scrollHeight + chat.clientHeight,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
   }, 1000);
   setLoading(false);
 }
