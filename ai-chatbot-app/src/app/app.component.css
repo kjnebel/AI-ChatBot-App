@@ -69,7 +69,8 @@ textarea {
 .buttonCont {
     width: calc(20% + 18px);
     display: flex;
-    justify-content: center;
+    padding-right: 22px;
+    justify-content: right;
     align-items: center;
 }
 
