@@ -6,7 +6,7 @@ import { format } from "date-fns";
 export const client = new OpenAI({
   organization: OPEN_AI_ORG_KEY,
   project: OPEN_AI_PROJ_KEY,
-  apiKey: OPEN_AI_API_KEY,
+  // apiKey: OPEN_AI_API_KEY,
   dangerouslyAllowBrowser: true
 });
 
