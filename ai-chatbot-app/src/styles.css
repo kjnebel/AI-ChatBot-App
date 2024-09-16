@@ -1,4 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --text: #f4f4e1;
+    --background: #0e0f0a;
+    --primary: #303e23;
+    --secondary: #b7b856;
+    --accent: #ab9f2b;
+    --lighter-bg: #191a14;
+    --hover-bg: #7b8247;
+    --lightest-bg: #262723;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,4 +22,6 @@ html, body {
     height: 100%;
     overflow: hidden;
     padding: 8px;
+    background: var(--background);
+    color: var(--text);
 }

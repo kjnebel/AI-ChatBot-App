@@ -1,7 +1,13 @@
 <div class="app">
-  <app-chat-feed class="center"></app-chat-feed>
-  <div class="chatBox center">
-    <input type="text" [(ngModel)]="prompt">
-    <button (click)="submitPrompt()">Send</button>
+  <div class="title">
+    <h1>KieranAI</h1>
+    <h5>powered by <a href="https://platform.openai.com/docs/api-reference/introduction" target="_blank">OpenAI</a></h5>
+  </div>
+  <app-chat-feed class="lightBg"></app-chat-feed>
+  <div class="chatBox lightBg">
+    <textarea placeholder="Enter prompt here..." [(ngModel)]="prompt" id="input" contenteditable="true"></textarea>
+    <div class="buttonCont">
+      <button (click)="submitPrompt()">Send</button>
+    </div>
   </div>
 </div>
