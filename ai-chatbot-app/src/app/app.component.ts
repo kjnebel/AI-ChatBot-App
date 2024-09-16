@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { getResponse } from './services/ai.service';
+import { ChatCompletionMessageParam } from 'openai/resources';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ai-chatbot-app';
+  prompt: string = '';
+
+  async ngOnInit() {
+    // const value = await getResponse(message);
+  }
+
+  submitPrompt() {
+    let input: ChatCompletionMessageParam = { role: 'user', content: this.prompt };
+    console.log(input);
+    getResponse(input);
+  }
 }

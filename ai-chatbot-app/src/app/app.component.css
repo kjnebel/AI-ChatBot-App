@@ -1,0 +1,19 @@
+.app {
+    height: 100%;
+    width: 100%;
+}
+
+.center {
+    display: block;
+    margin: auto;
+}
+
+app-chat-feed {
+    height: 80%;
+    width: 80%;
+}
+
+.chatBox {
+    width: 80%;
+    height: 20%;
+}
