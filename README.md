@@ -1,8 +1,6 @@
 # KieranAI
 This is an AI chatbot that utilizes OpenAI's Api to generate a text response to a users prompt. The AI is trained to speak as if it were me and it has been trained using my resume to know certain details about me. The application runs using Angular 16.
 
-**Although the AI speaks from my perspective, the AI's opinions are not my own.*
-
 ## Requirements
 + Must have Node.js installed
 + **Will have to pay at least $5 for OpenAI api key (tutorial for how to do that below)**
@@ -99,3 +97,5 @@ After that whenever you want to serve or run the application you can run the fol
 ```sh
 ng serve --open
 ```
+
+**Although the AI speaks from my perspective, the AI's opinions are not my own.*
